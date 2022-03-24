@@ -17,7 +17,7 @@ public class Equipo {
 		this.alumnos = alumnos;
 	}
 	
-	//añadir alumnos
+	//anadir alumnos
 	
 	//borrar alumnos
 	
@@ -30,12 +30,12 @@ public class Equipo {
 	public Equipo unirEquipos(Equipo otro) {
 		List<Alumno> listaU = new ArrayList<Alumno>();
 		for (int i = 0; i< this.alumnos.size();i++) {
-			if (this.alumnos.get(i) != null && listaU.contains(this.alumnos.get(i))) {
+			if (this.alumnos.get(i) != null && !listaU.contains(this.alumnos.get(i))) {
 				listaU.add(this.alumnos.get(i));
 			}
 		}
 		for (int j = 0; j< this.alumnos.size();j++) {
-			if (otro.alumnos.get(j) != null && listaU.contains(otro.alumnos.get(j))) {
+			if (otro.alumnos.get(j) != null && !listaU.contains(otro.alumnos.get(j))) {
 				listaU.add(this.alumnos.get(j));
 			}
 		}
@@ -49,6 +49,19 @@ public class Equipo {
 	}
 	
 	//interseccion de equipos
+	
+	public Equipo interseccion(Equipo otro){
+		List<Alumno> listaU = new ArrayList<Alumno>();
+		for (int i = 0; i< this.alumnos.size();i++) {
+			if (this.alumnos.get(i)!=null && otro.alumnos.get(i)!=null 
+					&& !listaU.contains(this.alumnos.get(i)) && !listaU.contains(otro.alumnos.get(i))
+					&& this.alumnos.get(i).equals(otro.alumnos.get(i))){
+				listaU.add(this.alumnos.get(i));
+			}
+		}
+		Equipo equipoI = new Equipo("Interseccion "+this.nombre+" "+otro.nombre,listaU);
+		return equipoI;
+	}
 
 	public String getNombre() {
 		return nombre;
