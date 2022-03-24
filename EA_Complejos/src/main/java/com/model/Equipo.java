@@ -27,6 +27,27 @@ public class Equipo {
 	
 	//union de equipos
 	
+	public Equipo unirEquipos(Equipo otro) {
+		List<Alumno> listaU = new ArrayList<Alumno>();
+		for (int i = 0; i< this.alumnos.size();i++) {
+			if (this.alumnos.get(i) != null && listaU.contains(this.alumnos.get(i))) {
+				listaU.add(this.alumnos.get(i));
+			}
+		}
+		for (int j = 0; j< this.alumnos.size();j++) {
+			if (otro.alumnos.get(j) != null && listaU.contains(otro.alumnos.get(j))) {
+				listaU.add(this.alumnos.get(j));
+			}
+		}
+		
+		Equipo equipoU = new Equipo(this.nombre+" y "+otro.nombre,listaU);
+		
+		return equipoU;
+		
+		//modificar cuando tengamos alumno pertenece a equipo
+		
+	}
+	
 	//interseccion de equipos
 
 	public String getNombre() {
