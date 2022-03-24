@@ -19,7 +19,38 @@ public class Equipo {
 	
 	//anadir alumnos
 	
+	public void anadirAlumno (Alumno alumno) {
+		if (alumno!=null && !this.alumnos.contains(alumno)) {
+			this.alumnos.add(alumno);
+		}else {
+			if(alumno==null) {
+				throw new EquipoException("El alumno no existe");
+				
+			}else if(this.alumnos.contains(alumno)) {
+				throw new EquipoException("El alumno ya está en el equipo");
+			}
+		}
+		
+	}
+	
 	//borrar alumnos
+	
+	
+	public void borrarAlumno(Alumno alumno) {
+		if (alumno!=null && this.alumnos.contains(alumno)) {
+			this.alumnos.remove(alumno);
+		}else {
+			if(alumno==null) {
+				throw new EquipoException("El alumno no existe");
+				
+			}else if(!this.alumnos.contains(alumno)) {
+				throw new EquipoException("El alumno no está en el equipo");
+			}
+		}
+		
+	}
+	
+	
 	
 	//alumno pertenece a equipo
 	

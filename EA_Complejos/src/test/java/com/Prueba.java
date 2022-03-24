@@ -19,7 +19,7 @@ class Prueba {
 	@Test
 	public void testAddAlumnoAtributosAumentaTamanio() {
 		Equipo equipoA = new Equipo();
-		equipoA.añadirAlumno("JM","0000001A");
+		equipoA.anadirAlumno(new Alumno("JM","0000001A"));
 		
 		assertEquals(equipoA.getAlumnos().size(),1);
 	}
