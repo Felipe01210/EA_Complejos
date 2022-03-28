@@ -1,9 +1,10 @@
 package main.java.com.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Equipo {
 	
@@ -84,7 +85,7 @@ public class Equipo {
 		}
 		for (int j = 0; j< this.alumnos.size();j++) {
 			if (otro.alumnos.get(j) != null && !listaU.contains(otro.alumnos.get(j))) {
-				listaU.add(this.alumnos.get(j));
+				listaU.add(otro.alumnos.get(j));
 			}
 		}
 		
@@ -96,17 +97,22 @@ public class Equipo {
 		
 	}
 	
+	public Equipo unirEquipos2(Equipo otro) {
+		Set<Alumno> unido = new HashSet<>(this.getAlumnos());
+		unido.addAll(otro.getAlumnos());
+		List<Alumno> listUnido = new ArrayList<>(unido);
+		Equipo eqUnido = new Equipo("unido",listUnido);
+		return eqUnido;
+	}
+	
+	
 	//interseccion de equipos
 	
 	public Equipo interseccion(Equipo otro){
 		List<Alumno> listaU = new ArrayList<Alumno>();
-		for (int i = 0; i< this.alumnos.size();i++) {
-			for (int j = 0; j< this.alumnos.size();j++) {
-				if (this.alumnos.get(i)!=null && otro.alumnos.get(j)!=null 
-						&& !listaU.contains(this.alumnos.get(i)) && !listaU.contains(otro.alumnos.get(j))
-						&& this.alumnos.get(i).equals(otro.alumnos.get(j))){
-					listaU.add(this.alumnos.get(i));
-				}
+		for (int i = 0; i<this.getAlumnos().size();i++) {
+			if (otro.getAlumnos().contains(this.getAlumnos().get(i))) {
+				listaU.add(this.getAlumnos().get(i));
 			}
 		}
 		Equipo equipoI = new Equipo("Interseccion "+this.nombre+" "+otro.nombre,listaU);
