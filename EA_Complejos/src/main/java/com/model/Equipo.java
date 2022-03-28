@@ -27,7 +27,7 @@ public class Equipo {
 				throw new EquipoException("El alumno no existe");
 				
 			}else if(this.alumnos.contains(alumno)) {
-				throw new EquipoException("El alumno ya está en el equipo");
+				throw new EquipoException("El alumno ya estï¿½ en el equipo");
 			}
 		}
 		
@@ -44,7 +44,7 @@ public class Equipo {
 				throw new EquipoException("El alumno no existe");
 				
 			}else if(!this.alumnos.contains(alumno)) {
-				throw new EquipoException("El alumno no está en el equipo");
+				throw new EquipoException("El alumno no estï¿½ en el equipo");
 			}
 		}
 		
@@ -54,7 +54,24 @@ public class Equipo {
 	
 	//alumno pertenece a equipo
 	
+	public Alumno alumnoPerteneceEquipo (Alumno alumno) {
+	Alumno resultado = null;
+	
+	for (int i = 0; i < this.alumnos.size(); i++) {
+		if (this.alumnos.get(i).equals(alumno)) {
+			resultado = alumno;
+		}
+	}
+	return resultado;
+	}
+	
 	//mostrar lista de personas de equipo
+	
+	public void mostrarListaPersonasEquipo() {
+		for (int i = 0; i < this.alumnos.size(); i++) {
+			System.out.println(this.alumnos.get(i));
+		}
+	}
 	
 	//union de equipos
 	
