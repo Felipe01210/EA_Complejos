@@ -69,5 +69,20 @@ class Pruebax {
 		assertEquals(interseccion.getAlumnos().size(),1);
 		assertEquals(interseccion.getAlumnos().get(0),alumno2);
 	}
+	
+	@Test
+	public void testEquipoGenerico() {
+		
+		Alumno alumno1 = new Alumno("JM","0000001A");
+		Integer int1 = 1;
+		
+		Equipo<Alumno> equipoA = new Equipo<Alumno>();
+		Equipo<Integer> equipoI = new Equipo<Integer>();
+		
+		equipoA.anadirAlumno(alumno1);
+		equipoI.anadirAlumno(int1);
+		
+		assertEquals(equipoA.getAlumnos().size(),1);
+	}
 
 }

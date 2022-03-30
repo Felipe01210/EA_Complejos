@@ -6,21 +6,21 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class Equipo {
+public class Equipo<T> {
 	
 	private String nombre;
-	private List<Alumno> alumnos = new ArrayList<Alumno>();
+	private List<T> alumnos = new ArrayList<T>(); /*List<Alumno> alumnos = new ArrayList<Alumno>*/
 	
 	public Equipo() {}
 	
-	public Equipo(String nombre, List<Alumno> alumnos) {
+	public Equipo(String nombre, List<T> alumnos) {
 		this.nombre = nombre;
 		this.alumnos = alumnos;
 	}
 	
 	//anadir alumnos
 	
-	public void anadirAlumno (Alumno alumno) {
+	public void anadirAlumno (T alumno) {
 		if (alumno!=null && !this.alumnos.contains(alumno)) {
 			this.alumnos.add(alumno);
 		}else {
@@ -37,7 +37,7 @@ public class Equipo {
 	//borrar alumnos
 	
 	
-	public void borrarAlumno(Alumno alumno) {
+	public void borrarAlumno(T alumno) {
 		if (alumno!=null && this.alumnos.contains(alumno)) {
 			this.alumnos.remove(alumno);
 		}else {
@@ -55,8 +55,8 @@ public class Equipo {
 	
 	//alumno pertenece a equipo
 	
-	public Alumno alumnoPerteneceEquipo (Alumno alumno) {
-	Alumno resultado = null;
+	public T alumnoPerteneceEquipo (T alumno) {
+	T resultado = null;
 	
 	for (int i = 0; i < this.alumnos.size(); i++) {
 		if (this.alumnos.get(i).equals(alumno)) {
@@ -76,8 +76,8 @@ public class Equipo {
 	
 	//union de equipos
 	
-	public Equipo unirEquipos(Equipo otro) {
-		List<Alumno> listaU = new ArrayList<Alumno>();
+	public Equipo<T> unirEquipos(Equipo<T> otro) {
+		List<T> listaU = new ArrayList<T>();
 		for (int i = 0; i< this.alumnos.size();i++) {
 			if (this.alumnos.get(i) != null && !listaU.contains(this.alumnos.get(i))) {
 				listaU.add(this.alumnos.get(i));
@@ -85,11 +85,11 @@ public class Equipo {
 		}
 		for (int j = 0; j< this.alumnos.size();j++) {
 			if (otro.alumnos.get(j) != null && !listaU.contains(otro.alumnos.get(j))) {
-				listaU.add(otro.alumnos.get(j));
+				listaU.add((T) otro.alumnos.get(j));
 			}
 		}
 		
-		Equipo equipoU = new Equipo(this.nombre+" y "+otro.nombre,listaU);
+		Equipo<T> equipoU = new Equipo<T>(this.nombre+" y "+otro.nombre,listaU);
 		
 		return equipoU;
 		
@@ -97,25 +97,25 @@ public class Equipo {
 		
 	}
 	
-	public Equipo unirEquipos2(Equipo otro) {
-		Set<Alumno> unido = new HashSet<>(this.getAlumnos());
+	public Equipo<T> unirEquipos2(Equipo<T> otro) {
+		Set<T> unido = new HashSet<>(this.getAlumnos());
 		unido.addAll(otro.getAlumnos());
-		List<Alumno> listUnido = new ArrayList<>(unido);
-		Equipo eqUnido = new Equipo("unido",listUnido);
+		List<T> listUnido = new ArrayList<>(unido);
+		Equipo<T> eqUnido = new Equipo<T>("unido",listUnido);
 		return eqUnido;
 	}
 	
 	
 	//interseccion de equipos
 	
-	public Equipo interseccion(Equipo otro){
-		List<Alumno> listaU = new ArrayList<Alumno>();
+	public /*<F>*/ Equipo<T> interseccion(Equipo<T> otro){
+		List<T> listaU = new ArrayList<T>();
 		for (int i = 0; i<this.getAlumnos().size();i++) {
 			if (otro.getAlumnos().contains(this.getAlumnos().get(i))) {
 				listaU.add(this.getAlumnos().get(i));
 			}
 		}
-		Equipo equipoI = new Equipo("Interseccion "+this.nombre+" "+otro.nombre,listaU);
+		Equipo<T> equipoI = new Equipo<T>("Interseccion "+this.nombre+" "+otro.nombre,listaU);
 		return equipoI;
 	}
 
@@ -127,11 +127,11 @@ public class Equipo {
 		this.nombre = nombre;
 	}
 
-	public List<Alumno> getAlumnos() {
+	public List<T> getAlumnos() {
 		return alumnos;
 	}
 
-	public void setAlumnos(List<Alumno> alumnos) {
+	public void setAlumnos(List<T> alumnos) {
 		this.alumnos = alumnos;
 	}
 
@@ -148,7 +148,7 @@ public class Equipo {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Equipo other = (Equipo) obj;
+		Equipo<T> other = (Equipo<T>) obj;
 		return Objects.equals(alumnos, other.alumnos) && Objects.equals(nombre, other.nombre);
 	}
 	
