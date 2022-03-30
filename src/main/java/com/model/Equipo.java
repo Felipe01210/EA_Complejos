@@ -83,9 +83,9 @@ public class Equipo<T> {
 				listaU.add(this.alumnos.get(i));
 			}
 		}
-		for (int j = 0; j< this.alumnos.size();j++) {
+		for (int j = 0; j< otro.alumnos.size();j++) {
 			if (otro.alumnos.get(j) != null && !listaU.contains(otro.alumnos.get(j))) {
-				listaU.add((T) otro.alumnos.get(j));
+				listaU.add(otro.alumnos.get(j));
 			}
 		}
 		
@@ -118,7 +118,7 @@ public class Equipo<T> {
 		Equipo<T> equipoI = new Equipo<T>("Interseccion "+this.nombre+" "+otro.nombre,listaU);
 		return equipoI;
 	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
