@@ -84,5 +84,6 @@ class Pruebax {
 		
 		assertEquals(equipoA.getAlumnos().size(),1);
 	}
+	
 
 }
